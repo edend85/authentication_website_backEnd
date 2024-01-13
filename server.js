@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
     origin:["http://localhost:5173","https://authentication_website.ordernet.com"]
 }*/ 
 server.use(cors());
-server.use(express.json());
+server.use(express.json({ limit: '100mb'}));
 
 server.use('/api/user', require('./routes/userRoute'));
 server.listen(PORT, () => {
