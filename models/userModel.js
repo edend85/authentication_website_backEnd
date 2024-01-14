@@ -5,15 +5,15 @@ class User{
     lastName;
     email;
     password;
-    googleAccount;
+    socialMediaAccount;
 
-    constructor(firstName,lastName,email,password,googleAccount)
+    constructor(firstName,lastName,email,password,socialMediaAccount)
     {
         this.firstName = firstName,
         this.lastName = lastName,
         this.email = email,
         this.password = password,
-        this.googleAccount = googleAccount
+        this.socialMediaAccount = socialMediaAccount
 
     }
     static async InsertUser(firstName,lastName,email,password,socialMediaAccount){
@@ -22,6 +22,7 @@ class User{
         this.lastName = lastName;
         this.email = email;
         this.password = await bcrypt.hashSync(password,10);
+        console.log('this.password :>> ', this.password);
         this.socialMediaAccount = socialMediaAccount;
          return await new DB().InsertUser('Users',{...this});
      }
