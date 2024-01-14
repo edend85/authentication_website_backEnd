@@ -10,7 +10,7 @@ const db = new DB();
 /*{
     origin:["http://localhost:5173","https://authentication_website.ordernet.com"]
 }*/ 
-server.use(cors({origin:["https://authentication-zi9e.onrender.com/","https://authentication_website.ordernet.com"]}));
+server.use(cors({origin:["https://authentication-zi9e.onrender.com","https://authentication_website.ordernet.com","https://www.googleapis.com/oauth2"]}));
 server.use(express.json({ limit: '100mb'}));
 
 server.use('/api/user', require('./routes/userRoute'));
