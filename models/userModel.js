@@ -21,7 +21,7 @@ class User{
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = await bcrypt.hash(password,10);
+        this.password = await bcrypt.hashSync(password,10);
         this.socialMediaAccount = socialMediaAccount;
          return await new DB().InsertUser('Users',{...this});
      }
@@ -30,7 +30,7 @@ class User{
         this.email = email;
         let user = await new DB().Login('Users',email);
         console.log('back to step 2 :>> ');
-        let passwordMatch = await bcrypt.compare(password,user.password);
+        let passwordMatch = await bcrypt.compareSync(password,user.password);
         if(passwordMatch){
             return user;
         }
