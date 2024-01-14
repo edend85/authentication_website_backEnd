@@ -1,5 +1,5 @@
 const DB = require('../utils/db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 class User{
     firstName;
     lastName;
