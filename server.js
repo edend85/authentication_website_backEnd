@@ -5,7 +5,7 @@ const cors = require('cors');
 const server = express();
 const DB = require('./utils/db');
 const PORT = process.env.PORT || 3000;
-const bodyParser = require('body-parser');
+const db = new DB();
 
 /*{
     origin:["http://localhost:5173","https://authentication_website.ordernet.com"]
