@@ -7,7 +7,7 @@ const DB = require('./utils/db');
 const PORT = process.env.PORT || 3000;
 const db = new DB();
 
-server.use(cors({origin:["http://localhost:5174","https://authentication-zi9e.onrender.com","https://authentication_website.ordernet.com"]}));
+server.use(cors({origin:["https://authentication-zi9e.onrender.com","https://authentication_website.ordernet.com"]}));
 server.use(express.json({ limit: '100mb'}));
 
 server.use('/api/user', require('./routes/userRoute'));
