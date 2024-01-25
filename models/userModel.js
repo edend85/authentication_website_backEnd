@@ -1,44 +1,41 @@
 const DB = require('../utils/db');
 const bcrypt = require('bcryptjs');
-class User{
-    firstName;
-    lastName;
+class User {
+    fullName;
     email;
     password;
     socialMediaAccount;
 
-    constructor(firstName,lastName,email,password,socialMediaAccount)
-    {
-        this.firstName = firstName,
-        this.lastName = lastName,
-        this.email = email,
-        this.password = password,
-        this.socialMediaAccount = socialMediaAccount
+    constructor(fullName, email, password, socialMediaAccount) {
+        this.fullName = fullName,
+            this.email = email,
+            this.password = password,
+            this.socialMediaAccount = socialMediaAccount
 
     }
-    static async InsertUser(firstName,lastName,email,password,socialMediaAccount){
+    static async InsertUser(fullName, email, password, socialMediaAccount) {
         console.log('step modal InsertUser :>> ');
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
         this.email = email;
-        this.password = await bcrypt.hash(password,10);
+        this.password = await bcrypt.hash(password, 10);
         console.log('this.password :>> ', this.password);
         this.socialMediaAccount = socialMediaAccount;
-         return await new DB().InsertUser('Users',{...this});
-     }
-     static async Login(email,password){
+        return await new DB().InsertUser('Users', {
+            ...this
+        });
+    }
+    static async Login(email, password) {
         console.log('step 2:>> ');
         this.email = email;
-        let user = await new DB().Login('Users',email);
+        let user = await new DB().Login('Users', email);
         console.log('back to step 2 :>> ');
-        let passwordMatch = await bcrypt.compare(password,user.password);
-        if(passwordMatch){
+        let passwordMatch = await bcrypt.compare(password, user.password);
+        if (passwordMatch) {
             return user;
-        }
-        else{
+        } else {
             return false;
         }
-     }
+    }
 }
 
 module.exports = User;
