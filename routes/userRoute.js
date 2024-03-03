@@ -5,13 +5,12 @@ UsersRoutes.put('/Register', async (req, res) => {
     try {
         console.log('regi :>> ');
         let {
-            firstName,
-            lastName,
+            fullName,
             email,
             password,
             socialMediaAccount
         } = req.body;
-        let data = await UserModel.InsertUser(firstName, lastName, email, password, socialMediaAccount);
+        let data = await UserModel.InsertUser(fullName, email, password, socialMediaAccount);
         console.log('data :>> ', data);
         res.status(200).json(data);
     } catch (error) {
@@ -31,8 +30,7 @@ UsersRoutes.post('/Login', async (req, res) => {
         console.log('back to step 1 :>> ');
         if (user) {
             res.status(200).json({
-                firstName: user.firstName,
-                lastName: user.lastName,
+                fullName: user.fullName,
                 email: user.email,
                 socialMediaAccount: user.socialMediaAccount
             });
@@ -55,7 +53,7 @@ UsersRoutes.post('/Check', async (req, res) => {
         console.log('back to step 1 :>> ');
         if (user) {
             res.status(200).json({
-                email: user.email
+                email: resEmail
             });
         } else {
             throw error;

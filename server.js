@@ -5,13 +5,10 @@ const cors = require('cors');
 const server = express();
 const DB = require('./utils/db');
 const PORT = process.env.PORT || 3000;
-const bodyParser = require('body-parser');
+const db = new DB();
 
-/*{
-    origin:["http://localhost:5173","https://authentication_website.ordernet.com"]
-}*/ 
-server.use(cors());
-server.use(express.json());
+server.use(cors({origin:["https://authentication-zi9e.onrender.com","https://authentication_website.ordernet.com"]}));
+server.use(express.json({ limit: '100mb'}));
 
 server.use('/api/user', require('./routes/userRoute'));
 server.listen(PORT, () => {

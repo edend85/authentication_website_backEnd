@@ -1,26 +1,24 @@
 const DB = require('../utils/db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 class User {
-    firstName;
-    lastName;
+    fullName;
     email;
     password;
-    googleAccount;
+    socialMediaAccount;
 
-    constructor(firstName, lastName, email, password, googleAccount) {
-        this.firstName = firstName,
-            this.lastName = lastName,
+    constructor(fullName, email, password, socialMediaAccount) {
+        this.fullName = fullName,
             this.email = email,
             this.password = password,
-            this.googleAccount = googleAccount
+            this.socialMediaAccount = socialMediaAccount
 
     }
-    static async InsertUser(firstName, lastName, email, password, socialMediaAccount) {
+    static async InsertUser(fullName, email, password, socialMediaAccount) {
         console.log('step modal InsertUser :>> ');
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
         this.email = email;
         this.password = await bcrypt.hash(password, 10);
+        console.log('this.password :>> ', this.password);
         this.socialMediaAccount = socialMediaAccount;
         return await new DB().InsertUser('Users', {
             ...this
