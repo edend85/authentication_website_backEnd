@@ -40,7 +40,8 @@ class User {
         console.log('step 2:>> ');
         this.email = email;
         console.log('back to step 2 :>> ');
-        return userEmail = await new DB().Check('Users', email);
+        const userEmail = await new DB().Check('Users', email);
+        return userEmail;
     }
 }
 

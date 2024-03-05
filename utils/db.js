@@ -54,13 +54,16 @@ class DB {
     try {
       console.log('step 3 :>> ');
       await this.client.connect();
-      let userEmail = await this.client.db(this.db_name).collection(collection).findOne({
+      let user = await this.client.db(this.db_name).collection(collection).findOne({
         "email": email
-      }, {
-        "email": 1
       });
-      return userEmail;
+      if (user) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (error) {
+      console.log('error :>> ', error);
       throw error;
     } finally {
       await this.client.close();

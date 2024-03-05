@@ -47,16 +47,14 @@ UsersRoutes.post('/Check', async (req, res) => {
     try {
         console.log('step 1 :>> ');
         const {
-            email,
+            email
         } = req.body;
         let resEmail = await UserModel.Check(email);
         console.log('back to step 1 :>> ');
-        if (user) {
-            res.status(200).json({
-                email: resEmail
-            });
+        if (resEmail) {
+            res.status(200).send(resEmail);
         } else {
-            throw error;
+            res.status(404).send(!resEmail);
         }
     } catch (error) {
         console.log('error :>> ', error);
