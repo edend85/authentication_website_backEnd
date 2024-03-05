@@ -58,8 +58,10 @@ class DB {
         "email": email
       });
       if (user) {
+        console.log('true 3:>> ');
         return true;
       } else {
+        console.log('false 3:>> ');
         return false;
       }
     } catch (error) {

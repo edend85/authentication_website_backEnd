@@ -41,6 +41,7 @@ class User {
         this.email = email;
         console.log('back to step 2 :>> ');
         const userEmail = await new DB().Check('Users', email);
+        console.log('res 2:>> ', userEmail);
         return userEmail;
     }
 }
